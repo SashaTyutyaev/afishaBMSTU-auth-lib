@@ -40,7 +40,7 @@ public abstract class BaseJwtService<T> {
 
     protected abstract Class<T> getDataType();
 
-    protected abstract String generateToken(UUID externalId, List<String> roles);
+    protected abstract String generateToken(T data, List<String> roles);
 
     private Key getSigningKey() {
         return Keys.hmacShaKeyFor(secret.getBytes());
