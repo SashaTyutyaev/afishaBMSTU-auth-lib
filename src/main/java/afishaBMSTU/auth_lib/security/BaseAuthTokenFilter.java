@@ -125,8 +125,9 @@ public abstract class BaseAuthTokenFilter<T> extends OncePerRequestFilter {
      */
     protected boolean shouldSkipFilter(HttpServletRequest request) {
         String requestURI = request.getRequestURI();
-        return requestURI.startsWith("/swagger-ui/") ||
-                requestURI.startsWith("/v3/api-docs/") ||
+        return requestURI.contains("/swagger-ui/") ||
+                requestURI.contains("/v3/api-docs") ||
+                requestURI.contains("/api/auth") ||
                 shouldSkipFilterAddons(requestURI);
     }
 
