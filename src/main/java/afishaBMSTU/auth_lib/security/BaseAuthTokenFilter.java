@@ -127,7 +127,6 @@ public abstract class BaseAuthTokenFilter<T> extends OncePerRequestFilter {
         String requestURI = request.getRequestURI();
         return requestURI.startsWith("/swagger-ui/") ||
                 requestURI.startsWith("/v3/api-docs/") ||
-                requestURI.startsWith("/v1/internal/") ||
                 shouldSkipFilterAddons(requestURI);
     }
 

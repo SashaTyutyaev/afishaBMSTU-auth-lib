@@ -6,8 +6,9 @@ import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
 
 import java.security.Key;
+import java.util.List;
 
-public abstract class BaseJwtService {
+public abstract class BaseJwtService<T> {
 
     @Value("${security.jwt.secret}")
     private String secret;
@@ -25,7 +26,7 @@ public abstract class BaseJwtService {
                 .getSubject();
     }
 
-    protected abstract String generateToken(String subject);
+    protected abstract String generateToken(T data, List<String> roles);
 
     private Key getSigningKey() {
         return Keys.hmacShaKeyFor(secret.getBytes());
