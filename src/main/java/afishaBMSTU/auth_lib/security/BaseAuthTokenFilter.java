@@ -41,6 +41,8 @@ public abstract class BaseAuthTokenFilter<T> extends OncePerRequestFilter {
             String token = parseJwt(request);
             if (token == null) {
                 log.warn("Token is null");
+                response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Invalid token");
+                return;
             } else if (!validateJwtToken(token)) {
                 log.warn("Token is invalid for request URI: {}", request.getRequestURI());
                 response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Invalid token");
@@ -130,6 +132,7 @@ public abstract class BaseAuthTokenFilter<T> extends OncePerRequestFilter {
         return requestURI.contains("/swagger-ui/") ||
                 requestURI.contains("/v3/api-docs") ||
                 requestURI.contains("/api/auth") ||
+                requestURI.contains("/api/internal") ||
                 shouldSkipFilterAddons(requestURI);
     }
 
