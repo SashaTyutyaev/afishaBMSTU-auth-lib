@@ -18,7 +18,7 @@ public abstract class BaseJwtService<T> {
 
     private final ObjectMapper objectMapper = new ObjectMapper();
 
-    protected UserInfoDto<T> extractUserInfo(String token) {
+    public UserInfoDto<T> extractUserInfo(String token) {
         if (token == null || !token.startsWith("Bearer")) {
             throw new IncorrectTokenException("Missing bearer prefix");
         }
