@@ -30,4 +30,10 @@ public class InternalTokenFilter extends BaseAuthTokenFilter<String> {
     protected String parseJwt(HttpServletRequest request) {
         return request.getHeader("Authorization");
     }
+
+    @Override
+    protected boolean shouldSkipFilter(HttpServletRequest request) {
+        String requestURI = request.getRequestURI();
+        return !requestURI.contains("/api/internal/");
+    }
 }
