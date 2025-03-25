@@ -1,6 +1,7 @@
 package afishaBMSTU.auth_lib.security.internal;
 
 import afishaBMSTU.auth_lib.security.BaseAuthTokenFilter;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
@@ -23,5 +24,10 @@ public class InternalTokenFilter extends BaseAuthTokenFilter<String> {
     @Override
     protected String retrieveUserInfo(String token) {
         return internalTokenService.getServiceNameFromToken(token);
+    }
+
+    @Override
+    protected String parseJwt(HttpServletRequest request) {
+        return request.getHeader("Authorization");
     }
 }
