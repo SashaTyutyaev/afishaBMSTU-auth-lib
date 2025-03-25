@@ -132,7 +132,6 @@ public abstract class BaseAuthTokenFilter<T> extends OncePerRequestFilter {
         return requestURI.contains("/swagger-ui/") ||
                 requestURI.contains("/v3/api-docs") ||
                 requestURI.contains("/api/auth") ||
-                requestURI.contains("/api/internal") ||
                 shouldSkipFilterAddons(requestURI);
     }
 

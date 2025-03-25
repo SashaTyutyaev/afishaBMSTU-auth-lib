@@ -3,10 +3,12 @@ package afishaBMSTU.auth_lib.security.internal;
 import afishaBMSTU.auth_lib.security.BaseAuthTokenFilter;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
 
 @RequiredArgsConstructor
+@Slf4j
 public class InternalTokenFilter extends BaseAuthTokenFilter<String> {
 
     private final InternalTokenService internalTokenService;
@@ -34,6 +36,7 @@ public class InternalTokenFilter extends BaseAuthTokenFilter<String> {
     @Override
     protected boolean shouldSkipFilter(HttpServletRequest request) {
         String requestURI = request.getRequestURI();
+        log.info("Skipping internal token filter");
         return !requestURI.contains("/api/internal/");
     }
 }
