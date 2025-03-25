@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Value;
 
 import java.security.Key;
 import java.util.List;
-import java.util.UUID;
 
 public abstract class BaseJwtService<T> {
 
@@ -40,7 +39,9 @@ public abstract class BaseJwtService<T> {
 
     protected abstract Class<T> getDataType();
 
-    protected abstract String generateToken(T data, List<String> roles);
+    protected String generateToken(T data, List<String> roles) {
+        return null;
+    }
 
     private Key getSigningKey() {
         return Keys.hmacShaKeyFor(secret.getBytes());
