@@ -36,7 +36,12 @@ public class InternalTokenFilter extends BaseAuthTokenFilter<String> {
     @Override
     protected boolean shouldSkipFilter(HttpServletRequest request) {
         String requestURI = request.getRequestURI();
-        log.info("Skipping internal token filter");
-        return !requestURI.contains("/api/internal/");
+        boolean res = !requestURI.contains("/api/internal");
+        if (res) {
+            return true;
+        } else {
+            log.info("Skipping internal token filter");
+            return false;
+        }
     }
 }
